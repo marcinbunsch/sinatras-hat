@@ -10,6 +10,20 @@ Spec::Rake::SpecTask.new('spec') do |t|
   t.spec_opts = ['--colour']
 end
 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "bradphelan-sinatras-hat"
+    gemspec.summary = "Easy peasy CRUD with sinatra"
+    gemspec.description = "Easy peasy CRUD with sinatra"
+    gemspec.email = "bradphelan@xtargets.com"
+    gemspec.homepage = "http://github.com/bradphelan/sinatras-hat"
+    gemspec.authors = ["Pat Nakajima", "Brad Phelan" ]
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
+
 Cucumber::Rake::Task.new do |c|
   c.cucumber_opts = '--format progress'
 end
