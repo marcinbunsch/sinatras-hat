@@ -72,14 +72,14 @@ module Sinatra
       private
       
       # Returns an association proxy for a nested resource if available,
-      # otherwise it just returns the class.
+      # otherwise it just returns nil
       def proxy(params)
         return klass unless parent
         owner = parent.find_owner(params)
         if owner and owner.respond_to?(plural)
           owner.send(plural)
         else
-          klass
+          nil
         end
       end
       

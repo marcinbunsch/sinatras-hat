@@ -13,12 +13,13 @@ module Sinatra
         @request = request
       end
       
+      # Now uses haml by default
       def render(action, options={})
         begin
           options.each { |sym, value| @request.send(sym, value) }
-          @request.erb "#{maker.prefix}/#{action}".to_sym
+          @request.haml "#{maker.prefix}/#{action}.html".to_sym
         rescue Errno::ENOENT
-          no_template! "Can't find #{File.expand_path(File.join(views, action.to_s))}.erb"
+          no_template! "Can't find #{File.expand_path(File.join(views, action.to_s))}.html.haml"
         end
       end
       

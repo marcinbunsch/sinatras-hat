@@ -44,7 +44,7 @@ module Sinatra
         end
 
         map.action :index, '/' do |request|
-          records = model.all(request.params)
+          records = model.all(request.params) || request.not_found
           set_cache_headers(request, records) unless protected?(:index)
           responder.success(:index, request, records)
         end
