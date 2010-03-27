@@ -20,6 +20,7 @@ begin
     gemspec.homepage = "http://github.com/bradphelan/sinatras-hat"
     gemspec.authors = ["Pat Nakajima", "Brad Phelan" ]
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: gem install jeweler"
 end
