@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.md",
      "Rakefile",
+     "VERSION",
+     "bradphelan-sinatras-hat.gemspec",
      "ci.rb",
      "example/app-with-auth.rb",
      "example/app-with-cache.rb",

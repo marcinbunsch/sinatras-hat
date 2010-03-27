@@ -13,7 +13,12 @@ module Sinatra
       # Loads all records using the maker's :finder option.
       def all(params)
         params.make_indifferent!
-        options[:finder].call(proxy(params), params)
+        p = proxy(params)
+        if p
+          options[:finder].call(p, params)
+        else
+          nil
+        end
       end
       
       # Loads one record using the maker's :record option.
@@ -40,7 +45,12 @@ module Sinatra
       # Returns a new instance of the mounted model.
       def new(params={})
         params.nest!
-        proxy(params).new(params[singular] || { })
+        p = proxy(params)
+        if p
+          p.new(params[singular] || { })
+        else
+          nil
+        end
       end
       
       # Returns the pluralized name for the model.
