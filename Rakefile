@@ -13,12 +13,12 @@ end
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "bradphelan-sinatras-hat"
+    gemspec.name = "marcinbunsch-sinatras-hat"
     gemspec.summary = "Easy peasy CRUD with sinatra"
     gemspec.description = "Easy peasy CRUD with sinatra"
-    gemspec.email = "bradphelan@xtargets.com"
-    gemspec.homepage = "http://github.com/bradphelan/sinatras-hat"
-    gemspec.authors = ["Pat Nakajima", "Brad Phelan" ]
+    gemspec.email = "marcin@applicake.com"
+    gemspec.homepage = "http://github.com/marcinbunsch/sinatras-hat"
+    gemspec.authors = ["Pat Nakajima", "Brad Phelan", "Marcin Bunsch" ]
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
