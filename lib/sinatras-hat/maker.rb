@@ -101,6 +101,24 @@ module Sinatra
         end
       end
       
+      # Changes the default actions for the mount
+      # To use the render_with_scaffold method
+      def make_scaffolded
+        responder.instance_eval do 
+          defaults
+          @defaults[:show][:success] =    proc { |data| render_with_scaffold(:show, {}, :scaffolded_object => data) }
+          @defaults[:index][:success] =   proc { |data| render_with_scaffold(:index, {}, :scaffolded_object => data) }
+          @defaults[:create][:success] =  proc { |data| redirect @request.request.path }
+          @defaults[:destroy][:success] = proc { |data| redirect @request.back }
+          
+          @defaults[:create][:failure] =  proc { |data| render_with_scaffold(:new, {}, :scaffolded_object => data) }
+          @defaults[:new][:success] =     proc { |data| render_with_scaffold(:new, {}, :scaffolded_object => data) }
+          @defaults[:edit][:success] =    proc { |data| render_with_scaffold(:edit, {}, :scaffolded_object => data) }
+          @defaults[:update][:failure] =  proc { |data| render_with_scaffold(:edit, {}, :scaffolded_object => data) }
+          @defaults[:update][:success] =  proc { |data| redirect @request.request.path }
+        end
+      end
+      
       # An array of parent Maker instances under which this instance
       # was nested.
       def parents

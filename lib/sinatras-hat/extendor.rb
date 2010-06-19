@@ -17,6 +17,15 @@ module Sinatra
           maker.generate_routes!
         end
       end
+      
+      def scaffold(klass, options={}, &block)
+        updated_block = Proc.new {
+          instance_eval &block if block
+          make_scaffolded
+        }
+        mount(klass, options={}, &updated_block)
+      end
+      
     end
   end
 end

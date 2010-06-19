@@ -1,0 +1,24 @@
+- url = request.path.sub(/\/*$/, '')
+- plural = url.split('/').last
+%h1= plural.capitalize
+
+%a{ :href => "#{url}/new" }== New #{scaffolded_object.model}
+
+- if scaffolded_object.size > 0
+  - klass = scaffolded_object.first.class
+  - properties = klass.properties.collect(&:name)
+  %table{ :id => plural }
+    %tr
+      - properties.each do |property|
+        %th= property.to_s.capitalize
+      %th== Options
+    - scaffolded_object.to_a.each do |object|
+      %tr
+      - properties.each do |property|
+        %td= object.send(property)
+      %td
+        %a{ :href => "#{url}/#{object.id}" }== Show
+        %a{ :href => "#{url}/#{object.id}/edit" }== Edit
+        %form{ :action => "#{url}/#{object.id}", :method => 'post' }
+          %input{ :type => 'hidden', :name => '_method', :value => 'delete' }
+          %input{ :type => 'submit', :value => 'Delete' }

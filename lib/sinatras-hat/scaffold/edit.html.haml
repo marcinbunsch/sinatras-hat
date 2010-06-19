@@ -1,0 +1,21 @@
+- singular = scaffolded_object.class.to_s.downcase
+%h1== Editing #{singular}
+
+- klass = scaffolded_object.class
+%form{ :action => request.path.sub(/\/edit$/, '/'), :method => 'post' }
+  %input{ :type => 'hidden', :name => '_method', :value => 'put' }
+  - klass.properties.each do |property|
+    - next if property.name == :id or property.name.to_s.match(/_id$/) 
+    - field_id = "#{klass.to_s.downcase}_#{property.name}"
+    - field_name = "#{klass.to_s.downcase}[#{property.name}]"
+    %label{ :for => field_id }= property.name
+    - case property.class.to_s.split('::').last.downcase
+      - when 'string', 'integer', 'float', 'bigdecimal', 'datetime', 'date', 'time'
+        %input{ :id => field_id, :name => field_name, :value => scaffolded_object.send(property.name) }
+      - when 'boolean'
+        %input{ :type => :checkbox, :id => field_id, :name => field_name, :value => scaffolded_object.send(property.name) }
+      - when 'text', 'object'
+        %textarea{ :id => field_id, :name => field_name }
+          = scaffolded_object.send(property.name)
+    .submit
+      %input{ :type => 'submit', :value => 'Save' }

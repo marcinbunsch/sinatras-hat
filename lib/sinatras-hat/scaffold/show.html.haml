@@ -1,0 +1,21 @@
+- klass = scaffolded_object.class
+- url = request.path.sub(/\/*$/, '')
+- collection = url.split('/')[0..-2].join('/')
+- plural = url.split('/')[-2]
+- singular = scaffolded_object.class.to_s.downcase
+%h1== #{singular.capitalize}
+
+%div{ :id => singular }
+- klass.properties.each do |property|
+  - field_id = "#{klass.to_s.downcase}_#{property.name}"
+  %p== #{property.name}: #{scaffolded_object.send(property.name)}
+
+%a{ :href => "#{url}/edit" }== Edit
+%a{ :href => "#{url}" }== Show
+%form{ :action => "#{url}", :method => 'post' }
+  %input{ :type => 'hidden', :name => '_method', :value => 'delete' }
+  %input{ :type => 'submit', :value => 'Delete' }
+
+%a{ :href => "#{collection}" }= plural.capitalize
+- scaffolded_object.class.relationships.keys.each do |key|
+  %a{ :href => "#{url}/#{key}" }= key.capitalize

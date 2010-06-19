@@ -23,6 +23,33 @@ module Sinatra
         end
       end
       
+      # Scaffolded rendering
+      # This will attempt to load the template file from:
+      # 1. Location where it should be (views/projects/index.html.haml)
+      # 2. User-specific scaffolds (views/scaffold/index.html.haml)
+      # 3. Default scaffolds (sinatras-hat/scaffold/index.html.haml)
+      def render_with_scaffold(action, options={}, locals = {})     
+        begin
+          
+          options.each { |sym, value| @request.send(sym, value) }
+          file = "#{maker.prefix}/#{action}.html"
+          @request.haml file.to_sym, options, locals
+          
+        rescue Errno::ENOENT
+          begin
+            file = "scaffold/#{action}.html"
+            @request.haml file.to_sym, options, locals
+          rescue Errno::ENOENT
+            begin
+              file = "#{action}.html"
+              @request.haml file.to_sym, { :views => File.expand_path(File.join("#{File.dirname(__FILE__)}/scaffold")) }, locals
+            rescue Errno::ENOENT
+              no_template! "Can't find #{file.to_s} in any of the view paths"
+            end
+          end
+        end
+      end
+      
       def redirect(*args)
         @request.redirect url_for(*args)
       end
