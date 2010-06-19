@@ -1,0 +1,87 @@
+--- 
+dependencies: 
+  rr: 
+    group: 
+    - :test
+    version: ">= 0"
+  acts_as_fu: 
+    group: 
+    - :test
+    version: ">= 0"
+  haml: 
+    group: 
+    - :test
+    version: ">= 0"
+  rake: 
+    group: 
+    - :test
+    version: ">= 0"
+  sqlite3-ruby: 
+    group: 
+    - :test
+    version: = 1.2.5
+    require: 
+    - sqlite3
+  rspec: 
+    group: 
+    - :test
+    version: = 1.2.0
+  sinatra: 
+    group: 
+    - :default
+    version: = 0.9.4
+  metaid: 
+    group: 
+    - :default
+    version: = 1.0
+  cucumber: 
+    group: 
+    - :test
+    version: ">= 0"
+  extlib: 
+    group: 
+    - :default
+    version: = 0.9.15
+specs: 
+- rake: 
+    version: 0.8.7
+- activesupport: 
+    version: 2.3.8
+- activerecord: 
+    version: 2.3.8
+- acts_as_fu: 
+    version: 0.0.5
+- builder: 
+    version: 2.1.2
+- diff-lcs: 
+    version: 1.1.2
+- trollop: 
+    version: 1.16.2
+- gherkin: 
+    version: 2.0.2
+- json_pure: 
+    version: 1.4.3
+- term-ansicolor: 
+    version: 1.0.5
+- cucumber: 
+    version: 0.8.3
+- extlib: 
+    version: 0.9.15
+- haml: 
+    version: 3.0.12
+- metaid: 
+    version: "1.0"
+- rack: 
+    version: 1.2.1
+- rr: 
+    version: 0.10.11
+- rspec: 
+    version: 1.2.0
+- sinatra: 
+    version: 0.9.4
+- sqlite3-ruby: 
+    version: 1.2.5
+hash: 163857adf818bf17e2eb8d546626d067225775a3
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
