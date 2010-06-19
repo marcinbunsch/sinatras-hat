@@ -3,5 +3,5 @@ Then /^"(.*)" should be the record "(.*)" time$/ do |header, key|
 end
 
 Then /^"(.*)" should be set$/ do |header|
-  response.headers[header].should_not be_blank
+  response.headers[header].blank?.should_not == true
 end

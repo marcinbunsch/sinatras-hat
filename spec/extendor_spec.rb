@@ -27,7 +27,7 @@ describe Sinatra::Hat::Extendor do
       end
 
       it "instance_eval's the block in the new maker" do
-        mock.proxy(maker = new_maker).instance_eval
+        mock.proxy(maker = new_maker).instance_eval {}
         mock.proxy(Sinatra::Hat::Maker).new(Article, { }) { maker }
         mock_app { mount(Article, &proc { }) }
       end

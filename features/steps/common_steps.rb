@@ -30,7 +30,7 @@ Given /^the record has children$/ do
 end
 
 Given /^a model that does not have a record$/ do
-  Person.all.should be_empty
+  Person.all.empty?.should == true
   @record = Person.new
   class << @record
     def to_param
@@ -65,7 +65,8 @@ When /^I make a GET request for that record using the '(\w+)' format$/ do |forma
 end
 
 Then /^the body is empty$/ do
-  body.should be_empty
+  # body.should be_empty
+  body.empty?.should == true
 end
 
 Then /^the status code is (\d+)$/ do |code|

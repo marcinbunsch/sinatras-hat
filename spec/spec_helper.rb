@@ -2,18 +2,22 @@ ARGV.clear
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..')
 
-require 'rubygems'
+require '.bundle/environment' unless defined?('ENV_LOADED')
 require 'spec'
 require 'rr'
 require 'sinatra/base'
 require 'sinatra/test'
 require 'sinatra/test/rspec'
 
+
+
 # What we're testing:
 require 'lib/sinatras-hat'
 
 # Tired of stupid mocks
 require 'acts_as_fu/base'
+
+ActiveSupport::Deprecation.silenced = true
 
 def fixture(path)
   File.join(File.dirname(__FILE__), 'fixtures', path)

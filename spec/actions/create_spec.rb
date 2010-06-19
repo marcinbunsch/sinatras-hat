@@ -50,7 +50,7 @@ describe "handle create" do
       
       context "when there's no format" do
         it "renders edit template" do
-          mock(request).erb :"articles/new"
+          mock(request).haml :"articles/new.html"
           mock.proxy(maker.responder).failure(:create, request, new_article)
           handle(request)
         end

@@ -12,10 +12,12 @@ end
 
 Then /^a record is created$/ do
   @record = Person.find_by_name("Pat")
-  @record.should_not be_nil
+  # @record.should_not be_nil
+  @record.nil?.should_not == true
 end
 
 Then /^a record is not created$/ do
   @record = Person.find_by_name("Pat")
-  @record.should be_nil
+  # @record.should be_nil
+  @record.nil?.should == true
 end

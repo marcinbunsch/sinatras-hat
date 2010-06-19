@@ -18,12 +18,12 @@ describe Sinatra::Hat::Response do
   describe "render()" do
     describe "rendering templates" do
       it "renders the index template" do
-        mock.proxy(request).erb :"articles/index"
+        mock.proxy(request).haml :"articles/index.html"
         new_response.render(:index)
       end
       
       it "renders the show template" do
-        mock.proxy(request).erb :"articles/show"
+        mock.proxy(request).haml :"articles/show.html"
         new_response.render(:show)
       end
     end

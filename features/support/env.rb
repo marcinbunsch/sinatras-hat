@@ -2,6 +2,9 @@ require File.join(File.dirname(__FILE__), *%w[.. .. lib sinatras-hat])
 
 require 'sinatra/test'
 require 'acts_as_fu'
+require 'spec'
+
+ActiveSupport::Deprecation.silenced = true
 
 Sinatra::Test.module_eval do
   def mock_app(base=Sinatra::Base, &block)

@@ -7,7 +7,8 @@ When /^I make a DELETE request to a path for a non\-existent record$/ do
 end
 
 Then /^the record gets destroyed$/ do
-  Person.find_by_id(@record.id).should be_nil
+  # Person.find_by_id(@record.id).should be_nil
+  Person.find_by_id(@record.id).nil?.should == true
 end
 
 Then /^I am redirected to the index action$/ do
