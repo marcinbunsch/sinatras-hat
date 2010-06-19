@@ -20,7 +20,7 @@ module Sinatra
       
       def interpolate(uri, records)
         return uri if records.empty?
-        uri.gsub(/:(\w+)/) { records.pop.send(@maker.options[:to_param] }
+        uri.gsub(/:(\w+)/) { records.pop.send(@maker.options[:to_param]) }
       end
       
       def path_records_for(record)
