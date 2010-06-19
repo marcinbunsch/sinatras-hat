@@ -40,7 +40,7 @@ module Sinatra
         map.action :create, '/', :verb => :post do |request|
           record = model.new(request.params)
           if record
-            puts "RECORD #{record.to_csv}"
+            puts "RECORD #{record}"
             result = record.save ? :success : :failure
             puts "RESULT #{result}"
             responder.send(result, :create, request, record)
